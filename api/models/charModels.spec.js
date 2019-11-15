@@ -1,13 +1,13 @@
 const db = require('../../data/config/dbConfig.js');
-const { insert } = require('./char-models.js');
+const { insert, remove } = require('./charModels.js');
 
-describe('Characters model', function() {
+describe('Characters model:', function() {
   describe('insert()', function() {
     beforeEach(async () => {
       await db('characters').truncate();
     });
 
-    it('Should insert a character', async function() {
+    it('should insert a character.', async function() {
       await insert({
         name: 'Vladimir Harkonnen',
         affiliation: 'House Harkonnen'
@@ -17,7 +17,7 @@ describe('Characters model', function() {
       expect(chars).toHaveLength(1);
     });
 
-    it('Should insert the provided character', async function() {
+    it('should insert the provided character.', async function() {
       await insert({
         name: 'Muad\'Dib',
         affiliation: 'The Fremen'
@@ -34,7 +34,7 @@ describe('Characters model', function() {
       expect(chars[1].name).toBe('Feyd-Rautha');
     });
 
-    it('Should return the inserted', async function() {
+    it('should return the inserted character.', async function() {
       let char = await insert({
         name: 'Shaddam Corino IV',
         affiliation: 'House Corino'
@@ -52,6 +52,6 @@ describe('Characters model', function() {
       expect(char.name).toBe('Reverend Mother Mohiam');
       expect(char.affiliation).toBe('Bene Gesserit');
       expect(char.id).toBeDefined();
-    })
+    });
   });
 });

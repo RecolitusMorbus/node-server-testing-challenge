@@ -1,9 +1,21 @@
 const db = require('../../data/config/dbConfig.js');
 
 module.exports = {
+  find,
+  findById,
   insert,
-  getAll
+  remove
 };
+
+function find() {
+  return db('characters');
+};
+
+function findById(id) {
+  return db('characters')
+    .where({ id })
+    .first();
+}
 
 async function insert(char) {
   return db('characters')
@@ -15,6 +27,8 @@ async function insert(char) {
     });
 };
 
-function getAll() {
-  return db('characters');
+function remove(id) {
+  return db('characters')
+    .where({ id })
+    .delete();
 };
